@@ -9,7 +9,12 @@ public class Player : MonoBehaviour
     {
         var horizontal = Input.GetAxis("Horizontal") * movementSpeed;
         var rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(horizontal, rb.velocity.y);
+
+        if(Mathf.Abs(horizontal) >= 1)
+        {
+            rb.velocity = new Vector2(horizontal, rb.velocity.y);
+            print($"Velocity = {rb.velocity}");
+        }
 
         var animator = GetComponent<Animator>();
         bool walking = horizontal != 0;
