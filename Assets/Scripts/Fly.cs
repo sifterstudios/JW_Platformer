@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Fly : MonoBehaviour
@@ -21,5 +22,15 @@ public class Fly : MonoBehaviour
             transform.position = _startPosition + (direction.normalized * maxDistance);
             direction *= -1;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        var player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            player.ResetToStart();
+        }
+
     }
 }
