@@ -7,10 +7,13 @@ public class Player : MonoBehaviour
     [SerializeField] int maxJumps = 2;
     [SerializeField] Transform feet;
     [SerializeField] float downpull = 5f;
+    [SerializeField] float maxJumpDuration = 0.1f;
+
 
     Vector3 _startPosition;
     int _jumpsRemaining;
     float _falltimer;
+    float _jumpTimer;
 
     void Start()
     {
@@ -46,6 +49,12 @@ public class Player : MonoBehaviour
             rb.velocity = (new Vector2(rb.velocity.x, jumpVelocity));
             _jumpsRemaining--;
             _falltimer = 0;
+            _jumpTimer = 0;
+        }
+        else if (Input.GetButton("Fire1") && _jumpTimer <= maxJumpDuration)
+        {
+            rb.velocity = (new Vector2(rb.velocity.x, jumpVelocity));
+            _jumpTimer += Time.deltaTime;
         }
 
         if (isGrounded)
