@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float jumpVelocity = 500f;
+    [Header("Movement")] [SerializeField] float movementSpeed = 5f;
+    [SerializeField] float slipFactor = 1f;
+    [SerializeField] float airMovementSpeed = 1.2f;
+    [Header("Jump")] [SerializeField] float jumpVelocity = 500f;
     [SerializeField] int maxJumps = 2;
     [SerializeField] Transform feet;
     [SerializeField] float downpull = 5f;
     [SerializeField] float maxJumpDuration = 0.1f;
+
 
     Vector3 _startPosition;
     int _jumpsRemaining;
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     float _horizontal;
     bool _isGrounded;
+    Collider2D _colliderHit;
 
     void Start()
     {
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour
 
         ReadHorizontalInput();
 
-        MoveHorizontal();
+        CheckGroundType();
 
         UpdateAnimator();
 
@@ -84,12 +88,44 @@ public class Player : MonoBehaviour
         return Input.GetButtonDown("Fire1") && _jumpsRemaining > 0;
     }
 
+    void CheckGroundType()
+    {
+        if (_colliderHit != null)
+        {
+            if (_colliderHit.CompareTag("Slippery"))
+            {
+                SlipHorizontal();
+            }
+            else
+            {
+                MoveHorizontal();
+            }
+        }
+        else
+        {
+            MoveInAir();
+        }
+    }
+
+    void MoveInAir()
+    {
+        _rb.velocity = new Vector2(_horizontal * airMovementSpeed, _rb.velocity.y);
+    }
+
     void MoveHorizontal()
     {
-        if (Mathf.Abs(_horizontal) >= 1)
-        {
-            _rb.velocity = new Vector2(_horizontal, _rb.velocity.y);
-        }
+        _rb.velocity = new Vector2(_horizontal * movementSpeed, _rb.velocity.y);
+    }
+
+    void SlipHorizontal()
+    {
+        var desiredVelocity = new Vector2(_horizontal * movementSpeed, _rb.velocity.y);
+        var smoothedVelocity = Vector2.Lerp(
+            _rb.velocity,
+            desiredVelocity,
+            Time.deltaTime / slipFactor);
+
+        _rb.velocity = smoothedVelocity;
     }
 
     void ReadHorizontalInput()
@@ -113,8 +149,8 @@ public class Player : MonoBehaviour
 
     void UpdateIsGrounded()
     {
-        var hit = Physics2D.OverlapCircle(feet.position, 0.1f, LayerMask.GetMask("Default"));
-        _isGrounded = hit != null;
+        _colliderHit = Physics2D.OverlapCircle(feet.position, 0.1f, LayerMask.GetMask("Default"));
+        _isGrounded = _colliderHit != null;
     }
 
     internal void ResetToStart()

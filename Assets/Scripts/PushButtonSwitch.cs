@@ -1,24 +1,47 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PushButtonSwitch : MonoBehaviour
 {
-    [SerializeField] Sprite _downSprite;
-    [SerializeField] UnityEvent onEnter;
+    [SerializeField] Sprite pressedSprite;
+    [SerializeField] UnityEvent onPressed;
+    [SerializeField] UnityEvent onReleased;
+
+    Sprite _releasedSprite;
+    SpriteRenderer _spriteRenderer;
+
+    void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _releasedSprite = _spriteRenderer.sprite;
+        BecomeReleased();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         var player = other.GetComponent<Player>();
         if (player == null)
             return;
+        BecomePressed();
+    }
 
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = _downSprite;
+    void OnTriggerExit2D(Collider2D other)
+    {
+        var player = other.GetComponent<Player>();
+        if (player == null)
+            return;
+        BecomeReleased();
+    }
 
-        onEnter?.Invoke();
+    void BecomePressed()
+    {
+        _spriteRenderer.sprite = pressedSprite;
+        onPressed?.Invoke();
+    }
+
+    void BecomeReleased()
+    {
+        _spriteRenderer.sprite = _releasedSprite;
+        onReleased?.Invoke();
     }
 }
