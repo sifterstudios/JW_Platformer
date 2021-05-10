@@ -1899,7 +1899,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.775
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2499,7 +2499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   jumpVelocity: 6.5
-  maxJumps: 1
+  maxJumps: 2
   feet: {fileID: 285250572}
   downpull: 0.1
   maxJumpDuration: 0.1

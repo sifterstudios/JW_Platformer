@@ -54,10 +54,12 @@ public class Player : MonoBehaviour
         else if (Input.GetButton("Fire1") && _jumpTimer <= maxJumpDuration)
         {
             rb.velocity = (new Vector2(rb.velocity.x, jumpVelocity));
-            _jumpTimer += Time.deltaTime;
+            _falltimer = 0;
         }
 
-        if (isGrounded)
+        _jumpTimer += Time.deltaTime;
+
+        if (isGrounded && _falltimer > 0)
         {
             _falltimer = 0;
             _jumpsRemaining = maxJumps;
