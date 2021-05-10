@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7686988714391636081}
+  - component: {fileID: 3529202518658215350}
   - component: {fileID: 7686988714391636086}
-  - component: {fileID: 7686988714391636087}
   - component: {fileID: 7686988714391636084}
   m_Layer: 0
-  m_Name: springboardUp
+  m_Name: Springboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3529202518658215350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686988714391636085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2564e951604927146889895d2a05fa23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceVelocity: 10
+  downSprite: {fileID: 21300000, guid: a56d5080c7ca8f84390c4084c1613ba4, type: 3}
 --- !u!212 &7686988714391636086
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,25 +99,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!251 &7686988714391636087
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7686988714391636085}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
 --- !u!61 &7686988714391636084
 BoxCollider2D:
   m_ObjectHideFlags: 0
