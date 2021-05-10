@@ -181,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: fc671adeaf1a5b1499b41c986f869e47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0ec59dfca7bc2c4da58a7881c6e2051, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5e629507ae313468aa65c617f16edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Level2
+  sceneName: Level1
 --- !u!1 &1174339476
 GameObject:
   m_ObjectHideFlags: 0
