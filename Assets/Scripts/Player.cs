@@ -5,12 +5,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float jumpForce = 500f;
+    [SerializeField] int maxJumps = 2;
     Vector3 _startPosition;
-
+    int _jumpsRemaining;
 
     void Start()
     {
         _startPosition = transform.position;
+        _jumpsRemaining = maxJumps;
     }
 
     void Update()
@@ -21,7 +23,7 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(horizontal) >= 1)
         {
             rb.velocity = new Vector2(horizontal, rb.velocity.y);
-            print($"Velocity = {rb.velocity}");
+            //print($"Velocity = {rb.velocity}");
         }
 
         var animator = GetComponent<Animator>();
@@ -34,10 +36,18 @@ public class Player : MonoBehaviour
             spriteRenderer.flipX = horizontal < 0;
         }
 
-        if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Fire1") && _jumpsRemaining > 0)
         {
             rb.AddForce(Vector2.up * jumpForce);
+            _jumpsRemaining--;
+
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        _jumpsRemaining = maxJumps;
+
     }
 
     internal void ResetToStart()
