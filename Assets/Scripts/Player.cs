@@ -165,6 +165,6 @@ public class Player : MonoBehaviour
     public void TeleportTo(Vector3 position)
     {
         _rb.position = position;
-        _rb.position = Vector2.zero;
+        _rb.velocity = Vector2.zero;
     }
 }

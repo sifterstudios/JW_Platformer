@@ -11,19 +11,25 @@ public class Door : MonoBehaviour
     [SerializeField] SpriteRenderer rendererMid;
     [SerializeField] SpriteRenderer rendererTop;
     [SerializeField] int requiredCoins = 3;
-    [SerializeField] Door _exit;
+    [SerializeField] Door exit;
+    [SerializeField] Canvas canvas;
+
+    bool _open;
 
 
     [ContextMenu("Open Door")]
     void Open()
     {
+        if(canvas!=null)
+            canvas.enabled = false;
+        _open = true;
         rendererMid.sprite = openMid;
         rendererTop.sprite = openTop;
     }
 
     void Update()
     {
-        if (Coin.CoinsCollected >= requiredCoins)
+        if (_open == false && Coin.CoinsCollected >= requiredCoins)
         {
             Open();
         }
@@ -31,10 +37,12 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (_open == false)
+            return;
         var player = other.GetComponent<Player>();
-        if (player != null && _exit != null)
+        if (player != null && exit != null)
         {
-            player.TeleportTo(_exit.transform.position);
+            player.TeleportTo(exit.transform.position);
         }
     }
 }
