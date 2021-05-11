@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    static int _coinsCollected;
+    public static int CoinsCollected;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
         if (player == null)
             return;
         gameObject.SetActive(false);
-        _coinsCollected++;
-        print(_coinsCollected);
+        CoinsCollected++;
+        print(CoinsCollected);
     }
 }
