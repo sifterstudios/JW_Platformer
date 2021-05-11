@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     bool _isGrounded;
     Collider2D _colliderHit;
 
+    public int PlayerNumber => playerNumber;
+
     void Start()
     {
         _startPosition = transform.position;
