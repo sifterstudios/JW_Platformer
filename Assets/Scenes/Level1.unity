@@ -17280,11 +17280,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 817356556}
+  - component: {fileID: 817356557}
   - component: {fileID: 817356555}
   - component: {fileID: 817356554}
   - component: {fileID: 817356553}
   - component: {fileID: 817356552}
-  - component: {fileID: 817356557}
   m_Layer: 0
   m_Name: Falling Platform
   m_TagString: Untagged
@@ -17444,8 +17444,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0ccec59779e39488235e185ea6073c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 9
   PlayerInside: 0
+  _resetOnEmpty: 0
+  _fallSpeed: 3
+  _fallAfterSeconds: 9
+  _shakeX: 0.005
+  _shakeY: 0.005
 --- !u!1 &819883569
 GameObject:
   m_ObjectHideFlags: 0

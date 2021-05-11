@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    [SerializeField] float fallSpeed;
-
     public bool PlayerInside;
+
+    [Tooltip("Resets the wiggle timer when no players are on the platform")] [SerializeField]
+    bool _resetOnEmpty;
+
+    [SerializeField] float _fallSpeed = 3;
+    [Range(0.1f, 5f)] [SerializeField] float _fallAfterSeconds = 9;
+    [Range(0.005f, 0.1f)] [SerializeField] float _shakeX = 0.005f;
+    [Range(0.005f, 0.1f)] [SerializeField] float _shakeY = 0.005f;
     readonly HashSet<Player> _playersInTrigger = new HashSet<Player>();
     bool _falling;
-
     Vector3 _initialPosition;
+    float _wiggleTimer;
 
     void Start()
     {
@@ -50,16 +56,17 @@ public class FallingPlatform : MonoBehaviour
         Debug.Log("Waiting to wiggle");
         yield return new WaitForSeconds(0.25f);
         Debug.Log("Wiggling");
-        float wiggleTimer = 0;
+        if (_resetOnEmpty)
+            _wiggleTimer = 0;
 
-        while (wiggleTimer < 1f)
+        while (_wiggleTimer < _fallAfterSeconds)
         {
-            var randomX = Random.Range(-0.05f, 0.05f);
-            var randomY = Random.Range(-0.05f, 0.05f);
+            var randomX = Random.Range(-_shakeX, _shakeX);
+            var randomY = Random.Range(-_shakeY, _shakeY);
             transform.position = _initialPosition + new Vector3(randomX, randomY);
             var randomDelay = Random.Range(0.005f, 0.01f);
             yield return new WaitForSeconds(randomDelay);
-            wiggleTimer += randomDelay;
+            _wiggleTimer += randomDelay;
         }
 
         Debug.Log("Falling");
@@ -69,7 +76,7 @@ public class FallingPlatform : MonoBehaviour
         float fallTimer = 0;
         while (fallTimer < 3f)
         {
-            transform.position += Vector3.down * Time.deltaTime * fallSpeed;
+            transform.position += Vector3.down * (Time.deltaTime * _fallSpeed);
             fallTimer += Time.deltaTime;
             Debug.Log(fallTimer);
             yield return null;
