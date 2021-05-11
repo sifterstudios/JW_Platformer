@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int playerNumber = 1;
     [Header("Movement")] [SerializeField] float movementSpeed = 5f;
     [SerializeField] float slipFactor = 1f;
     [SerializeField] float airMovementSpeed = 1.2f;
@@ -72,7 +73,7 @@ public class Player : MonoBehaviour
 
     bool ShouldContinueJump()
     {
-        return Input.GetButton("Fire1") && _jumpTimer <= maxJumpDuration;
+        return Input.GetButton($"P{playerNumber}Jump") && _jumpTimer <= maxJumpDuration;
     }
 
     void Jump()
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
 
     bool ShouldStartJump()
     {
-        return Input.GetButtonDown("Fire1") && _jumpsRemaining > 0;
+        return Input.GetButtonDown($"P{playerNumber}Jump") && _jumpsRemaining > 0;
     }
 
     void CheckGroundType()
@@ -130,7 +131,7 @@ public class Player : MonoBehaviour
 
     void ReadHorizontalInput()
     {
-        _horizontal = Input.GetAxis("Horizontal") * movementSpeed;
+        _horizontal = Input.GetAxis($"P{playerNumber}Horizontal") * movementSpeed;
     }
 
     void UpdateSpriteDirection()
