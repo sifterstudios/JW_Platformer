@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
+    [SerializeField] float fallSpeed;
+
     public bool PlayerInside;
-    Vector3 _initialPosition;
     readonly HashSet<Player> _playersInTrigger = new HashSet<Player>();
+    bool _falling;
+
+    Vector3 _initialPosition;
 
     void Start()
     {
@@ -28,6 +32,8 @@ public class FallingPlatform : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (_falling)
+            return;
         var player = other.GetComponent<Player>();
         if (player == null)
             return;
@@ -52,11 +58,23 @@ public class FallingPlatform : MonoBehaviour
             var randomY = Random.Range(-0.05f, 0.05f);
             transform.position = _initialPosition + new Vector3(randomX, randomY);
             var randomDelay = Random.Range(0.005f, 0.01f);
-            yield return null;
+            yield return new WaitForSeconds(randomDelay);
             wiggleTimer += randomDelay;
         }
 
         Debug.Log("Falling");
-        yield return new WaitForSeconds(3f);
+        _falling = true;
+        foreach (var col in GetComponents<Collider2D>()) col.enabled = false;
+
+        float fallTimer = 0;
+        while (fallTimer < 3f)
+        {
+            transform.position += Vector3.down * Time.deltaTime * fallSpeed;
+            fallTimer += Time.deltaTime;
+            Debug.Log(fallTimer);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }
