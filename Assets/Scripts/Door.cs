@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -16,23 +13,9 @@ public class Door : MonoBehaviour
 
     bool _open;
 
-
-    [ContextMenu("Open Door")]
-    void Open()
-    {
-        if(canvas!=null)
-            canvas.enabled = false;
-        _open = true;
-        rendererMid.sprite = openMid;
-        rendererTop.sprite = openTop;
-    }
-
     void Update()
     {
-        if (_open == false && Coin.CoinsCollected >= requiredCoins)
-        {
-            Open();
-        }
+        if (_open == false && Coin.CoinsCollected >= requiredCoins) Open();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -40,9 +23,17 @@ public class Door : MonoBehaviour
         if (_open == false)
             return;
         var player = other.GetComponent<Player>();
-        if (player != null && exit != null)
-        {
-            player.TeleportTo(exit.transform.position);
-        }
+        if (player != null && exit != null) player.TeleportTo(exit.transform.position);
+    }
+
+
+    [ContextMenu("Open Door")]
+    public void Open()
+    {
+        if (canvas != null)
+            canvas.enabled = false;
+        _open = true;
+        rendererMid.sprite = openMid;
+        rendererTop.sprite = openTop;
     }
 }
