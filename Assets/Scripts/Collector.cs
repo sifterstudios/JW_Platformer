@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField] Collectible[] _collectibles;
+    [SerializeField] List<Collectible> _collectibles;
     TMP_Text _remainingText;
 
     void Start()
@@ -22,5 +24,10 @@ public class Collector : MonoBehaviour
             return;
 
         print("Got All Gems");
+    }
+
+    void OnValidate()
+    {
+        _collectibles = _collectibles.Distinct().ToList();
     }
 }
