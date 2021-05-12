@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Breakable : MonoBehaviour
@@ -7,10 +6,7 @@ public class Breakable : MonoBehaviour
     {
         if (other.collider.GetComponent<Player>() == null)
             return;
-        if (other.contacts[0].normal.y > 0)
-        {
-            TakeHit();
-        }
+        if (other.contacts[0].normal.y > 0) TakeHit();
     }
 
     void TakeHit()

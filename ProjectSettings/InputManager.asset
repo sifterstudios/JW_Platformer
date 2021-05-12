@@ -570,7 +570,7 @@ InputManager:
     descriptiveName: Player 1 Jump - Joystick
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 4
+    positiveButton: joystick 1 button 2
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3
