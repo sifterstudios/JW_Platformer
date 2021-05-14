@@ -8,6 +8,7 @@ public class Collector : MonoBehaviour
 {
     [SerializeField] List<Collectible> _collectibles;
     [SerializeField] UnityEvent _onCollectionComplete;
+
     int _countCollected;
     TMP_Text _remainingText;
 
@@ -15,7 +16,7 @@ public class Collector : MonoBehaviour
     {
         _remainingText = GetComponentInChildren<TMP_Text>();
 
-        foreach (var collectible in _collectibles) collectible.SetCollector(this);
+        foreach (var collectible in _collectibles) collectible.AddCollector(this);
 
         var countRemaining = _collectibles.Count - _countCollected;
         _remainingText?.SetText(countRemaining.ToString());
