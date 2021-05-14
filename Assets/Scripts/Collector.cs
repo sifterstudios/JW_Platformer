@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,11 +23,25 @@ public class Collector : MonoBehaviour
         _remainingText?.SetText(countRemaining.ToString());
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+
+        foreach (var collectible in _collectibles)
+        {
+            if (Selection.activeGameObject == gameObject)
+                Gizmos.color = Color.red;
+            else
+                Gizmos.color = Color.gray;
+            Gizmos.DrawLine(transform.position, collectible.transform.position);
+        }
+    }
 
     void OnValidate()
     {
         _collectibles = _collectibles.Distinct().ToList();
     }
+
 
     public void ItemPickedUp()
     {
