@@ -8,7 +8,8 @@ public class Collectible : MonoBehaviour
         var player = other.GetComponent<Player>();
         if (player == null)
             return;
-        gameObject.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
 
         OnPickedUp?.Invoke();
         GetComponent<AudioSource>().Play();
