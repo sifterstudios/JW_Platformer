@@ -6,10 +6,10 @@ public class PushButtonSwitch : MonoBehaviour
     [SerializeField] Sprite pressedSprite;
     [SerializeField] UnityEvent onPressed;
     [SerializeField] UnityEvent onReleased;
+    [SerializeField] int playerNumber;
 
     Sprite _releasedSprite;
     SpriteRenderer _spriteRenderer;
-    [SerializeField] int playerNumber;
 
     void Awake()
     {
@@ -42,7 +42,10 @@ public class PushButtonSwitch : MonoBehaviour
 
     void BecomeReleased()
     {
-        _spriteRenderer.sprite = _releasedSprite;
-        onReleased?.Invoke();
+        if (onReleased.GetPersistentEventCount() != 0)
+        {
+            _spriteRenderer.sprite = _releasedSprite;
+            onReleased.Invoke();
+        }
     }
 }
