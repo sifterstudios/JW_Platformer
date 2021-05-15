@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -163,6 +164,7 @@ public class Player : MonoBehaviour
     internal void ResetToStart()
     {
         _rb.position = _startPosition;
+        SceneManager.LoadScene("Menu");
     }
 
     public void TeleportTo(Vector3 position)
