@@ -1,9 +1,15 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIStartLevelButton : MonoBehaviour
 {
     [SerializeField] string _levelName;
+
+    void OnValidate()
+    {
+        GetComponentInChildren<TMP_Text>()?.SetText(_levelName);
+    }
 
     public void LoadLevel()
     {
