@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ToggleSwitch : MonoBehaviour
 {
+    [SerializeField] UnityEvent _onLeft;
+    [SerializeField] UnityEvent _onRight;
     [SerializeField] Sprite _leftSprite;
     [SerializeField] Sprite _rightSprite;
 
@@ -25,8 +28,22 @@ public class ToggleSwitch : MonoBehaviour
         var playerWalkingLeft = playerRigidbody.velocity.x < 0;
 
         if (wasOnRight && playerWalkingRight)
-            _spriteRenderer.sprite = _rightSprite;
+            SetPosition(true);
         else if (!wasOnRight && !playerWalkingLeft)
+            SetPosition(false);
+    }
+
+    void SetPosition(bool right)
+    {
+        if (right)
+        {
+            _spriteRenderer.sprite = _rightSprite;
+            _onRight.Invoke();
+        }
+        else
+        {
             _spriteRenderer.sprite = _leftSprite;
+            _onLeft.Invoke();
+        }
     }
 }
