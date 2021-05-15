@@ -12,12 +12,13 @@ public class Player : MonoBehaviour
     [SerializeField] float _downpull = 5f;
     [SerializeField] float _maxJumpDuration = 0.1f;
     Animator _animator;
+
+    AudioSource _audioSource;
     Collider2D _colliderHit;
     float _falltimer;
     float _horizontal;
     string _horizontalAxis;
     bool _isGrounded;
-
     string _jumpButton;
     int _jumpsRemaining;
     float _jumpTimer;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -90,6 +92,8 @@ public class Player : MonoBehaviour
         _jumpsRemaining--;
         _falltimer = 0;
         _jumpTimer = 0;
+        if (_audioSource != null)
+            _audioSource.Play();
     }
 
     bool ShouldStartJump()

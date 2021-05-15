@@ -41896,7 +41896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773995827201411585, guid: 73bc31d93a0cafa46a0aa5deb7daf417, type: 3}
       propertyPath: orthographic size
-      value: 16.340624
+      value: 14.73
       objectReference: {fileID: 0}
     - target: {fileID: 2773995827201411586, guid: 73bc31d93a0cafa46a0aa5deb7daf417, type: 3}
       propertyPath: m_LocalRotation.y
