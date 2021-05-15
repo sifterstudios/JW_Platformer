@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usedSprite: {fileID: 21300000, guid: ee00f807c26c8d04a92e2c97d2455faa, type: 3}
   _item: {fileID: 4580293163513902604}
+  _itemPrefab: {fileID: 0}
   _itemLaunchVelocity: {x: 8, y: 8}
 --- !u!95 &387122380471024833
 Animator:
