@@ -25167,7 +25167,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674990511}
-  m_LocalRotation: {x: -0, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 7.888609e-31, z: -0, w: 1}
   m_LocalPosition: {x: 6, y: -1.3199997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -33859,8 +33859,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onCenter:
+    m_PersistentCalls:
+      m_Calls: []
   _leftSprite: {fileID: 21300000, guid: c87731ae6ac16e24081899edbd01736d, type: 3}
   _rightSprite: {fileID: 21300000, guid: 139c85502ba14ce46844f52f7027b8e7, type: 3}
+  _centerSprite: {fileID: 21300000, guid: 3b6aa20245049c54da299e191e895987, type: 3}
 --- !u!61 &967863344
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36086,7 +36090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInside: 0
-  _resetOnEmpty: 0
+  _resetOnEmpty: 1
   _fallSpeed: 9
   _fallAfterSeconds: 3.22
   _shakeX: 0.0504
@@ -37216,7 +37220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerInside: 0
-  _resetOnEmpty: 0
+  _resetOnEmpty: 1
   _fallSpeed: 9
   _fallAfterSeconds: 3.22
   _shakeX: 0.0504
@@ -42232,7 +42236,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 16.34283
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -42255,7 +42259,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423193955}
-  m_LocalRotation: {x: -0, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 7.888609e-31, z: -0, w: 1}
   m_LocalPosition: {x: 6, y: -1.3199997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

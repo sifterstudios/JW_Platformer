@@ -5,8 +5,11 @@ public class ToggleSwitch : MonoBehaviour
 {
     [SerializeField] UnityEvent _onLeft;
     [SerializeField] UnityEvent _onRight;
+    [SerializeField] UnityEvent _onCenter;
     [SerializeField] Sprite _leftSprite;
     [SerializeField] Sprite _rightSprite;
+    [SerializeField] Sprite _centerSprite;
+    ToggleDirection _currentDirection;
 
     SpriteRenderer _spriteRenderer;
 
@@ -28,22 +31,37 @@ public class ToggleSwitch : MonoBehaviour
         var playerWalkingLeft = playerRigidbody.velocity.x < 0;
 
         if (wasOnRight && playerWalkingRight)
-            SetPosition(true);
-        else if (!wasOnRight && !playerWalkingLeft)
-            SetPosition(false);
+            SetToggleDirectionPosition(ToggleDirection.Right);
+        else if (!wasOnRight && playerWalkingLeft)
+            SetToggleDirectionPosition(ToggleDirection.Left);
     }
 
-    void SetPosition(bool right)
+    void SetToggleDirectionPosition(ToggleDirection direction)
     {
-        if (right)
+        if (_currentDirection == direction)
+            return;
+        _currentDirection = direction;
+        switch (direction)
         {
-            _spriteRenderer.sprite = _rightSprite;
-            _onRight.Invoke();
+            case ToggleDirection.Left:
+                _spriteRenderer.sprite = _leftSprite;
+                _onLeft.Invoke();
+                break;
+            case ToggleDirection.Center:
+                _spriteRenderer.sprite = _centerSprite;
+                _onCenter.Invoke();
+                break;
+            case ToggleDirection.Right:
+                _spriteRenderer.sprite = _rightSprite;
+                _onRight.Invoke();
+                break;
         }
-        else
-        {
-            _spriteRenderer.sprite = _leftSprite;
-            _onLeft.Invoke();
-        }
+    }
+
+    enum ToggleDirection
+    {
+        Left,
+        Center,
+        Right
     }
 }
