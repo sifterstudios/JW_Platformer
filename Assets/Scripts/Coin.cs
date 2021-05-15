@@ -9,8 +9,12 @@ public class Coin : MonoBehaviour
         var player = other.GetComponent<Player>();
         if (player == null)
             return;
-        gameObject.SetActive(false);
+
         CoinsCollected++;
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<AudioSource>().Play();
 
         ScoreSystem.Add(100);
     }
