@@ -127,7 +127,7 @@ MonoBehaviour:
   _airMovementSpeed: 1.1
   _jumpVelocity: 6.5
   _maxJumps: 2
-  _feet: {fileID: 0}
+  _feet: {fileID: 8860073974553731309}
   _downpull: 2
   _maxJumpDuration: 0.3
 --- !u!95 &8860073973558084658
