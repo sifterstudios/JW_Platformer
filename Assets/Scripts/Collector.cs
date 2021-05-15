@@ -9,6 +9,7 @@ public class Collector : MonoBehaviour
 {
     [SerializeField] List<Collectible> _collectibles;
     [SerializeField] UnityEvent _onCollectionComplete;
+    AudioSource _audioSource;
 
     int _countCollected;
     TMP_Text _remainingText;
@@ -21,6 +22,7 @@ public class Collector : MonoBehaviour
 
         var countRemaining = _collectibles.Count - _countCollected;
         _remainingText?.SetText(countRemaining.ToString());
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void OnDrawGizmos()
@@ -53,5 +55,6 @@ public class Collector : MonoBehaviour
             return;
 
         _onCollectionComplete.Invoke();
+        _audioSource.Play();
     }
 }

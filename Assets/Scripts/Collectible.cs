@@ -11,6 +11,7 @@ public class Collectible : MonoBehaviour
         gameObject.SetActive(false);
 
         OnPickedUp?.Invoke();
+        GetComponent<AudioSource>().Play();
     }
 
     public event Action OnPickedUp;

@@ -33,5 +33,6 @@ public class ItemBox : HittableFromBelow
         var itemRigidbody = _item.GetComponent<Rigidbody2D>();
         if (itemRigidbody != null)
             itemRigidbody.velocity = _itemLaunchVelocity;
+        GetComponent<AudioSource>().Play();
     }
 }
