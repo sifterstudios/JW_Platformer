@@ -7,14 +7,14 @@ using UnityEngine.Events;
 
 public class Collector : MonoBehaviour
 {
-    [SerializeField] List<Collectible> _collectibles;
-    [SerializeField] UnityEvent _onCollectionComplete;
-    AudioSource _audioSource;
+    [SerializeField] private List<Collectible> _collectibles;
+    [SerializeField] private UnityEvent _onCollectionComplete;
+    private AudioSource _audioSource;
 
-    int _countCollected;
-    TMP_Text _remainingText;
+    private int _countCollected;
+    private TMP_Text _remainingText;
 
-    void Start()
+    private void Start()
     {
         _remainingText = GetComponentInChildren<TMP_Text>();
 
@@ -25,7 +25,7 @@ public class Collector : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
 
@@ -39,7 +39,7 @@ public class Collector : MonoBehaviour
         }
     }
 
-    void OnValidate()
+    private void OnValidate()
     {
         _collectibles = _collectibles.Distinct().ToList();
     }
@@ -53,7 +53,7 @@ public class Collector : MonoBehaviour
         _remainingText?.SetText(countRemaining.ToString());
         if (countRemaining > 0)
             return;
-
+// Ja her tester vi mere!
         _onCollectionComplete.Invoke();
         _audioSource.Play();
     }
